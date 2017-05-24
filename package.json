@@ -1,0 +1,11 @@
+{
+  "name": "swagapetantrum",
+  "version": "1.0.0",
+  "description": "Slackbot that gives frequent update about the course of crypto currencies",
+  "main": "index.js",
+  "author": "Kameron Argis",
+  "license": "MIT",
+  "dependencies": {
+    "nodemon": "^1.11.0"
+  }
+}
