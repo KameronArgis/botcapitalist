@@ -1,0 +1,14 @@
+const CURRENCIES = {
+  BITCOIN: 'BTC',
+  ETHEREUM: 'ETH'
+};
+
+const COLORS = {
+  [CURRENCIES.BITCOIN]: '#FFCE54',
+  [CURRENCIES.ETHEREUM]: '#4FC1E9',
+}
+
+module.exports = {
+  COLORS,
+  CURRENCIES,
+};
