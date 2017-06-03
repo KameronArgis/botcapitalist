@@ -5,6 +5,16 @@
 const https = require('https');
 const util = require('util');
 const config = require('./config/config.js');
+const qs = require('qs');
+
+const baseQueryParams = {
+  token: config.API_TOKEN,
+  channel: config.CHANNEL_ID,
+  as_user: true,
+  text: encodeURI('Here is the update !'),
+  attachments: '',
+};
+
 
 /**
  * fetch currencies
@@ -72,7 +82,6 @@ function createAttachments(obj) {
         "text",
         "pretext"
     ],
-
   }
 }
 
@@ -83,8 +92,12 @@ function createAttachments(obj) {
  */
 function updateCurrencyStatuses() {
   const currencies = fetchCurrencies(config.COINMARKET_API_URL).then(data => {
-    const attachments = data.map(currency => createAttachments(currency));
-    const finalUrl = `${config.API_URL}${encodeURIComponent(JSON.stringify(attachments))}`;
+  const attachments = data.map(currency => createAttachments(currency));
+  const finalUrl_bis = `${config.API_URL}${encodeURIComponent(JSON.stringify(attachments))}`;
+  const finalUrl = `${config.BASE_URL}${qs.stringify(Object.assign({}, baseQueryParams, { attachments }))}`;
+
+    console.log(finalUrl_bis);
+    console.log(finalUrl)
     return https.get(finalUrl, (res) => {
       if (res.statusCode !== 200) {
         console.error('an error has occcured');
